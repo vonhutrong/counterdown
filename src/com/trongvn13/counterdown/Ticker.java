@@ -1,13 +1,15 @@
 package com.trongvn13.counterdown;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Ticker {
-    private Runnable task = null;
+    private List<TickListener> listeners = null;
     
-    public Ticker(Runnable task) {
-        this.task = task;
+    public Ticker() {
+        listeners = new ArrayList<>();
     }
     
     public void start() {
@@ -20,6 +22,16 @@ public class Ticker {
     }
 
     protected void onTick() {
-        task.run();
+        for (TickListener listener : listeners) {
+            listener.onTick();
+        }
+    }
+    
+    public void addListener(TickListener listener) {
+        if (listener == null)
+            return;
+        
+        if (!listeners.contains(listener))
+            listeners.add(listener);
     }
 }
