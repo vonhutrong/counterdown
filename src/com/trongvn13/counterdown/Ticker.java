@@ -7,11 +7,11 @@ import java.util.TimerTask;
 
 public class Ticker {
     private List<TickListener> listeners = null;
-    
+
     public Ticker() {
         listeners = new ArrayList<>();
     }
-    
+
     public void start() {
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -26,11 +26,11 @@ public class Ticker {
             listener.onTick();
         }
     }
-    
+
     public void addListener(TickListener listener) {
         if (listener == null)
             return;
-        
+
         if (!listeners.contains(listener))
             listeners.add(listener);
     }

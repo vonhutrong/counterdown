@@ -8,22 +8,22 @@ public class Counter implements TickListener {
     private long period = 0;
     private Ticker ticker = null;
     private List<CounterListener> listeners = null;
-    
+
     public Counter(long period) {
         this.period = period;
         ticker = new Ticker();
         ticker.addListener(this);
         listeners = new ArrayList<>();
     }
-    
+
     void addListener(CounterListener listener) {
         if (listener == null)
             return;
-        
+
         if (!listeners.contains(listener))
             listeners.add(listener);
     }
-    
+
     protected void count() {
         count--;
         if (count < 1) {
