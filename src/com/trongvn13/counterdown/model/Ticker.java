@@ -1,4 +1,4 @@
-package com.trongvn13.counterdown;
+package com.trongvn13.counterdown.model;
 
 import java.util.ArrayList;
 import java.util.List;

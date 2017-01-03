@@ -1,18 +1,22 @@
-package com.trongvn13.counterdown;
+package com.trongvn13.counterdown.view;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import com.trongvn13.counterdown.presenter.SettingPresenterInterface;
+
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MainUI extends JFrame {
+public class SettingView extends JFrame implements SettingViewInterface {
     private static final long serialVersionUID = 1L;
     private JTextField textField;
+    private SettingPresenterInterface settingPresenter = null;
 
-    public MainUI() {
+    public SettingView() {
         setResizable(false);
         setTitle("Counterdown");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,26 +44,26 @@ public class MainUI extends JFrame {
 
         btnStart.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String stringTime = textField.getText();
+                String time = textField.getText();
                 String message = textArea.getText();
-
-                long time = Long.parseLong(stringTime);
-
-                Counter counter = new Counter(time);
-                counter.addListener(new CounterListener() {
-                    @Override
-                    public void onTimed() {
-                        new AlertWindow(message).setVisible(true);
-                    }
-                });
-                counter.start();
+                settingPresenter.startCounter(time, message);
             }
         });
         btnStart.setBounds(132, 123, 89, 23);
         getContentPane().add(btnStart);
     }
 
-    public static void main(String[] args) {
-        new MainUI().setVisible(true);
+    @Override
+    public SettingPresenterInterface getPresenter() {
+        return settingPresenter;
+    }
+
+    @Override
+    public void setPresenter(SettingPresenterInterface presenter) {
+        this.settingPresenter = presenter;
+    }
+    
+    public void showView() {
+        setVisible(true);
     }
 }

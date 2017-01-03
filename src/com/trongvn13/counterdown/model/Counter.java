@@ -1,4 +1,4 @@
-package com.trongvn13.counterdown;
+package com.trongvn13.counterdown.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class Counter implements TickListener {
         listeners = new ArrayList<>();
     }
 
-    void addListener(CounterListener listener) {
+    public void addListener(CounterListener listener) {
         if (listener == null)
             return;
 
