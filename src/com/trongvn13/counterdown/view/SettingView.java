@@ -5,13 +5,15 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import com.trongvn13.counterdown.presenter.SettingPresenterInterface;
+import com.trongvn13.counterdown.util.ResourceManager;
 
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 
-public class SettingView extends JFrame implements SettingViewInterface {
+public class SettingView extends MinimizeableView implements SettingViewInterface {
     private static final long serialVersionUID = 1L;
     private JTextField textField;
     private SettingPresenterInterface settingPresenter = null;
@@ -51,6 +53,9 @@ public class SettingView extends JFrame implements SettingViewInterface {
         });
         btnStart.setBounds(132, 123, 89, 23);
         getContentPane().add(btnStart);
+        
+        Image image = ResourceManager.getInstance().getImageFromPath("images/icon.png");
+        setTrayIcon(image , "Counterdown", null);
     }
 
     @Override
